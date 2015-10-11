@@ -91,7 +91,7 @@ define('table2chart', function () {
             if (dim && dim.length === 2) {
                 var currentStyle = on.style;
                 if (!currentStyle) currentStyle = '';
-                on.style = 'width:' + dim[0] + ';height:' + dim[1] + ';' + currentStyle;
+                on.style = currentStyle + 'width:' + dim[0] + ';height:' + dim[1] + ';';
             }
         }
     }

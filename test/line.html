@@ -1,0 +1,131 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Continuous data for multiple-column tables</title>
+    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}">
+        /* */
+    </script>
+    <script src="../bower_components/jquery/dist/jquery.js">
+        /* */
+    </script>
+    <script data-main="test" src="../bower_components/requirejs/require.js">
+        /* */
+    </script>
+</head>
+
+<body>
+    <h1>Line Chart</h1>
+    <h2>Default style</h2>
+    <div data-t2c="LineChart" data-t2c-source="sample-data" data-t2c-size="100%x600">&nbsp;</div>
+
+    <h1>Area Chart</h1>
+    <h2>Default style</h2>
+    <div data-t2c="AreaChart" data-t2c-source="sample-data" data-t2c-size="100%x600">&nbsp;</div>
+    <h2>Stacked</h2>
+    <div data-t2c="AreaChart" data-t2c-source="sample-data" data-t2c-size="100%x600" data-t2c-options='{"isStacked":true}'>&nbsp;</div>
+    <h2>Stacked 100%</h2>
+    <div data-t2c="AreaChart" data-t2c-source="sample-data" data-t2c-size="100%x600" data-t2c-options='{"isStacked":"percent"}'>&nbsp;</div>
+
+    <h1>Stepped Area Chart</h1>
+    <h2>Default style</h2>
+    <div data-t2c="SteppedAreaChart" data-t2c-source="sample-data" data-t2c-size="100%x600">&nbsp;</div>
+    <h2>Stacked</h2>
+    <div data-t2c="SteppedAreaChart" data-t2c-source="sample-data" data-t2c-size="100%x600" data-t2c-options='{"isStacked":true}'>&nbsp;</div>
+
+    <h1>Sample Data Table</h1>
+    <table id="sample-data">
+        <caption>Population structure by year</caption>
+        <thead>
+            <tr>
+                <td data-t2c-type="string">Year</td>
+                <td data-t2c-type="number">Aged 0-19</td>
+                <td data-t2c-type="number">Aged 20-59</td>
+                <td data-t2c-type="number">Aged 60-64</td>
+                <td data-t2c-type="number">Aged 65 or more</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2000</td>
+                <td>15626640</td>
+                <td>32541228</td>
+                <td>2768623</td>
+                <td>9571659</td>
+            </tr>
+            <tr>
+                <td>2001</td>
+                <td>15651059</td>
+                <td>32850586</td>
+                <td>2732418</td>
+                <td>9707347</td>
+            </tr>
+            <tr>
+                <td>2002</td>
+                <td>15679605</td>
+                <td>33190355</td>
+                <td>2667612</td>
+                <td>9847498</td>
+            </tr>
+            <tr>
+                <td>2003</td>
+                <td>15709858</td>
+                <td>33474243</td>
+                <td>2666018</td>
+                <td>9973911</td>
+            </tr>
+            <tr>
+                <td>2004</td>
+                <td>15783973</td>
+                <td>33683368</td>
+                <td>2701115</td>
+                <td>10082606</td>
+            </tr>
+            <tr>
+                <td>2005</td>
+                <td>15848857</td>
+                <td>33901956</td>
+                <td>2745892</td>
+                <td>10233832</td>
+            </tr>
+            <tr>
+                <td>2006</td>
+                <td>15887753</td>
+                <td>34136236</td>
+                <td>2827885</td>
+                <td>10334243</td>
+            </tr>
+            <tr>
+                <td>2007</td>
+                <td>15924796</td>
+                <td>34173826</td>
+                <td>3119696</td>
+                <td>10382372</td>
+            </tr>
+            <tr>
+                <td>2008</td>
+                <td>15948885</td>
+                <td>34134793</td>
+                <td>3397006</td>
+                <td>10481175</td>
+            </tr>
+            <tr>
+                <td>2009</td>
+                <td>15977308</td>
+                <td>34076200</td>
+                <td>3643459</td>
+                <td>10607533</td>
+            </tr>
+            <tr>
+                <td>2010</td>
+                <td>16010535</td>
+                <td>33997230</td>
+                <td>3873473</td>
+                <td>10731701</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

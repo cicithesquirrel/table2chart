@@ -1,8 +1,11 @@
 # table2chart
-Converter from HTML table to Google Chart
+
+Builds [Google Chart](https://developers.google.com/chart/) from simple HTML tables.
 
 # Usage
 
-  * Add a HTML table in your document
-  * Add table2chart options via the `data-t2c-*` attributes
-  * Execute `table2chart.apply(yourTable)`
+  * Add a few table2chart options on the table via the `data-t2c-*` attributes
+  * Add a `div` as the chart placeholder (optional)
+  * Execute `table2chart.apply(placeholder, table)` when the page is fully loaded
+  
+Want to know more? Have a look to the HTML files inside the `test` folder!

@@ -4,7 +4,8 @@ Builds [Google Chart](https://developers.google.com/chart/) from simple HTML tab
 
 # Usage
 
-  * Add a few table2chart options on the table via the `data-t2c-*` attributes
+  * Add [RequireJS](http://www.requirejs.org/) if you do not already have
+  * Add a few _table2chart_ options on the table via the `data-t2c-*` attributes
   * Add a `div` as the chart placeholder (optional)
   * Execute `table2chart.apply(placeholder, table)` when the page is fully loaded
   

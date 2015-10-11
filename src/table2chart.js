@@ -1,4 +1,5 @@
 define('table2chart', function () {
+    "use strict";
 
     function tableDomAdapter(table) {
         return {

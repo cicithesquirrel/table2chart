@@ -64,6 +64,18 @@ define('table2chart', function () {
                 }
                 return retval;
             },
+            getGoogleOptions: function () {
+                var optAsString = table.getAttribute('data-t2c-options');
+                console.log(optAsString);
+                if (optAsString) {
+                    try {
+                        return JSON.parse(optAsString);
+                    } catch (err) {
+                        throw Error('Invalid JSON options: ' + optAsString)
+                    }
+                }
+                return undefined;
+            },
 
             toGoogleChartDataTable: function () {
                 var googleDataTable = new google.visualization.DataTable();
@@ -106,17 +118,11 @@ define('table2chart', function () {
 
         tableAdapter.applySize();
 
-        var options = {
-            title: tableAdapter.getCaption(),
-            legend: {
-                position: 'top',
-                maxLines: 3
-            },
-            bar: {
-                groupWidth: '75%'
-            },
-            isStacked: true,
-        };
+        var options = tableAdapter.getGoogleOptions() || {};
+
+        if (!options.title) {
+            options.title = tableAdapter.getCaption();
+        }
 
         var chart = new google.visualization.ColumnChart(table);
         chart.draw(data, options);

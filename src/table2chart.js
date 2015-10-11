@@ -12,7 +12,7 @@ define('table2chart', function () {
                     if (dim && dim.length === 2) {
                         var currentStyle = table.style;
                         if (!currentStyle) currentStyle = '';
-                        table.style = 'width:' + parseInt(dim[0]) + ';height:' + parseInt(dim[1]) + ';' + currentStyle;
+                        table.style = 'width:' + dim[0] + ';height:' + dim[1] + ';' + currentStyle;
                     }
                 }
             },
@@ -107,43 +107,33 @@ define('table2chart', function () {
         };
     }
 
-
-
-    function makeColumnChart(table) {
-        var tableAdapter = tableDomAdapter(table);
-
-        //console.log('makeColumnChart: ' + tableAdapter);
-
-        var data = tableAdapter.toGoogleDataTable();
-
-        tableAdapter.applySize();
-
-        var options = tableAdapter.getGoogleOptions() || {};
-
-        if (!options.title) {
-            options.title = tableAdapter.getCaption();
-        }
-
-        var chart = new google.visualization.ColumnChart(table);
-        chart.draw(data, options);
-    }
-
-
-    var factories = {
-        'ColumnChart': makeColumnChart
-    };
-
-
     return {
-        apply: function (table) {
+        apply: function (table, on) {
 
-            var kindId = table.getAttribute('data-t2c');
-            var factory = factories[kindId];
-            if (!factory) {
-                throw Error('Unknown chart kind: ' + kindId);
+            if (!on) {
+                on = table;
             }
 
-            factory(table);
+            var kindId = table.getAttribute('data-t2c');
+
+            if (!google.visualization[kindId]) {
+                throw Error('Unknown Chart kind: ' + kindId);
+            }
+
+            var tableAdapter = tableDomAdapter(table);
+
+            var data = tableAdapter.toGoogleDataTable();
+
+            tableAdapter.applySize();
+
+            var options = tableAdapter.getGoogleOptions() || {};
+
+            if (!options.title) {
+                options.title = tableAdapter.getCaption();
+            }
+
+            var chart = new google.visualization[kindId](on);
+            chart.draw(data, options);
         }
     };
 });

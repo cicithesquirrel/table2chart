@@ -18,7 +18,7 @@
 <body>
     <h1>Column Chart</h1>
     <h2>Default style</h2>
-    <table data-t2c="ColumnChart" data-t2c-size="900x450">
+    <table data-t2c="ColumnChart" data-t2c-size="100%x600">
         <caption>Population by age</caption>
         <thead>
             <tr>
@@ -104,7 +104,181 @@
         </tbody>
     </table>
     <h2>Stacked 100%</h2>
-    <table data-t2c="ColumnChart" data-t2c-size="900x450" data-t2c-options='{"isStacked":"percent"}'>
+    <table data-t2c="ColumnChart" data-t2c-size="100%x600" data-t2c-options='{"isStacked":"percent"}'>
+        <caption>Population by age</caption>
+        <thead>
+            <tr>
+                <td data-t2c-type="string">Country</td>
+                <td data-t2c-type="number">Under 15</td>
+                <td data-t2c-type="number">Between 15 and 65</td>
+                <td data-t2c-type="number">Above 65</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Belgium</td>
+                <td>1.9</td>
+                <td>7.3</td>
+                <td>2.0</td>
+            </tr>
+            <tr>
+                <td>Czech Republic</td>
+                <td>1.6</td>
+                <td>7.2</td>
+                <td>1.8</td>
+            </tr>
+            <tr>
+                <td>France</td>
+                <td>12.3</td>
+                <td>42.0</td>
+                <td>11.6</td>
+            </tr>
+            <tr>
+                <td>Germany</td>
+                <td>10.6</td>
+                <td>53.5</td>
+                <td>16.7</td>
+            </tr>
+            <tr>
+                <td>Greece</td>
+                <td>1.6</td>
+                <td>7.2</td>
+                <td>2.2</td>
+            </tr>
+            <tr>
+                <td>Italy</td>
+                <td>8.5</td>
+                <td>39.4</td>
+                <td>12.9</td>
+            </tr>
+            <tr>
+                <td>Netherlands</td>
+                <td>2.9</td>
+                <td>11.1</td>
+                <td>2.8</td>
+            </tr>
+            <tr>
+                <td>Poland</td>
+                <td>5.8</td>
+                <td>27.3</td>
+                <td>5.5</td>
+            </tr>
+            <tr>
+                <td>Portugal</td>
+                <td>1.5</td>
+                <td>6.8</td>
+                <td>2.0</td>
+            </tr>
+            <tr>
+                <td>Romania</td>
+                <td>3.1</td>
+                <td>13.5</td>
+                <td>3.2</td>
+            </tr>
+            <tr>
+                <td>Spain</td>
+                <td>7.1</td>
+                <td>31.2</td>
+                <td>8.2</td>
+            </tr>
+            <tr>
+                <td>United Kingdom</td>
+                <td>11.3</td>
+                <td>41.9</td>
+                <td>11.1</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>Bar Chart</h1>
+    <h2>Default style</h2>
+    <table data-t2c="BarChart" data-t2c-size="100%x600">
+        <caption>Population by age</caption>
+        <thead>
+            <tr>
+                <td data-t2c-type="string">Country</td>
+                <td data-t2c-type="number">Under 15</td>
+                <td data-t2c-type="number">Between 15 and 65</td>
+                <td data-t2c-type="number">Above 65</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Belgium</td>
+                <td>1.9</td>
+                <td>7.3</td>
+                <td>2.0</td>
+            </tr>
+            <tr>
+                <td>Czech Republic</td>
+                <td>1.6</td>
+                <td>7.2</td>
+                <td>1.8</td>
+            </tr>
+            <tr>
+                <td>France</td>
+                <td>12.3</td>
+                <td>42.0</td>
+                <td>11.6</td>
+            </tr>
+            <tr>
+                <td>Germany</td>
+                <td>10.6</td>
+                <td>53.5</td>
+                <td>16.7</td>
+            </tr>
+            <tr>
+                <td>Greece</td>
+                <td>1.6</td>
+                <td>7.2</td>
+                <td>2.2</td>
+            </tr>
+            <tr>
+                <td>Italy</td>
+                <td>8.5</td>
+                <td>39.4</td>
+                <td>12.9</td>
+            </tr>
+            <tr>
+                <td>Netherlands</td>
+                <td>2.9</td>
+                <td>11.1</td>
+                <td>2.8</td>
+            </tr>
+            <tr>
+                <td>Poland</td>
+                <td>5.8</td>
+                <td>27.3</td>
+                <td>5.5</td>
+            </tr>
+            <tr>
+                <td>Portugal</td>
+                <td>1.5</td>
+                <td>6.8</td>
+                <td>2.0</td>
+            </tr>
+            <tr>
+                <td>Romania</td>
+                <td>3.1</td>
+                <td>13.5</td>
+                <td>3.2</td>
+            </tr>
+            <tr>
+                <td>Spain</td>
+                <td>7.1</td>
+                <td>31.2</td>
+                <td>8.2</td>
+            </tr>
+            <tr>
+                <td>United Kingdom</td>
+                <td>11.3</td>
+                <td>41.9</td>
+                <td>11.1</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Stacked 100%</h2>
+    <table data-t2c="BarChart" data-t2c-size="100%x600" data-t2c-options='{"isStacked":"percent"}'>
         <caption>Population by age</caption>
         <thead>
             <tr>

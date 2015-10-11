@@ -5,8 +5,8 @@ require.config({
 require(['table2chart'],
     function (t2c) {
         $(function () {
-            $('table[data-t2c]').each(function (indexInArray, table) {
-                t2c.apply(table);
+            $('[data-t2c]').each(function (indexInArray, o) {
+                t2c.apply(o);
             });
         });
     });

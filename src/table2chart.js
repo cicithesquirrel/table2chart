@@ -5,17 +5,6 @@ define('table2chart', function () {
             getCaption: function () {
                 return table.children[0].textContent;
             },
-            applySize: function () {
-                var sizeAsString = table.getAttribute('data-t2c-size');
-                if (sizeAsString) {
-                    var dim = sizeAsString.split('x');
-                    if (dim && dim.length === 2) {
-                        var currentStyle = table.style;
-                        if (!currentStyle) currentStyle = '';
-                        table.style = 'width:' + dim[0] + ';height:' + dim[1] + ';' + currentStyle;
-                    }
-                }
-            },
             __getHead: function () {
                 return table.children[1];
             },
@@ -64,18 +53,6 @@ define('table2chart', function () {
                 }
                 return retval;
             },
-            getGoogleOptions: function () {
-                var optAsString = table.getAttribute('data-t2c-options');
-                console.log(optAsString);
-                if (optAsString) {
-                    try {
-                        return JSON.parse(optAsString);
-                    } catch (err) {
-                        throw Error('Invalid JSON options: ' + optAsString);
-                    }
-                }
-                return undefined;
-            },
 
             toGoogleDataTable: function () {
                 var googleDataTable = new google.visualization.DataTable();
@@ -107,14 +84,42 @@ define('table2chart', function () {
         };
     }
 
-    return {
-        apply: function (table, on) {
-
-            if (!on) {
-                on = table;
+    function applySize(on) {
+        var sizeAsString = on.getAttribute('data-t2c-size');
+        if (sizeAsString) {
+            var dim = sizeAsString.split('x');
+            if (dim && dim.length === 2) {
+                var currentStyle = on.style;
+                if (!currentStyle) currentStyle = '';
+                on.style = 'width:' + dim[0] + ';height:' + dim[1] + ';' + currentStyle;
             }
+        }
+    }
 
-            var kindId = table.getAttribute('data-t2c');
+
+    function getGoogleOptions(on) {
+        var optAsString = on.getAttribute('data-t2c-options');
+        //console.log(optAsString);
+        if (optAsString) {
+            try {
+                return JSON.parse(optAsString);
+            } catch (err) {
+                throw Error('Invalid JSON options: ' + optAsString);
+            }
+        }
+        return undefined;
+    }
+
+    return {
+        apply: function (placeholder, table) {
+
+            if (!table) table = placeholder;
+
+            var tableId = placeholder.getAttribute('data-t2c-source');
+
+            if (tableId) table = document.getElementById(tableId);
+
+            var kindId = placeholder.getAttribute('data-t2c');
 
             if (!google.visualization[kindId]) {
                 throw Error('Unknown Chart kind: ' + kindId);
@@ -124,15 +129,15 @@ define('table2chart', function () {
 
             var data = tableAdapter.toGoogleDataTable();
 
-            tableAdapter.applySize();
+            applySize(placeholder);
 
-            var options = tableAdapter.getGoogleOptions() || {};
+            var options = getGoogleOptions(placeholder) || {};
 
             if (!options.title) {
                 options.title = tableAdapter.getCaption();
             }
 
-            var chart = new google.visualization[kindId](on);
+            var chart = new google.visualization[kindId](placeholder);
             chart.draw(data, options);
         }
     };

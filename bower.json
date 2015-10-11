@@ -1,21 +1,17 @@
 {
     "name": "table2chart",
     "version": "0.0.1",
-    "authors": [
-    "cicithesquirrel <cyrilc_mail-github@yahoo.fr>"
-  ],
+    "authors": ["cicithesquirrel <cyrilc_mail-github@yahoo.fr>"],
     "description": "Convert HTML table to Google Chart",
     "main": "src/table2chart.js",
-    "moduleType": [
-    "amd"
-  ],
+    "moduleType": ["es6"],
     "license": "MIT",
     "homepage": "",
-    "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+    "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
+    "dependencies": {
+        "requirejs": "~2.1.20"
+    },
+    "devDependencies": {
+        "jquery": "~2.1.4"
+    }
 }

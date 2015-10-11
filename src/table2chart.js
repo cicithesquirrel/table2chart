@@ -71,7 +71,7 @@ define('table2chart', function () {
                     try {
                         return JSON.parse(optAsString);
                     } catch (err) {
-                        throw Error('Invalid JSON options: ' + optAsString)
+                        throw Error('Invalid JSON options: ' + optAsString);
                     }
                 }
                 return undefined;

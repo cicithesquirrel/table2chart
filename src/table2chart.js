@@ -77,7 +77,7 @@ define('table2chart', function () {
                 return undefined;
             },
 
-            toGoogleChartDataTable: function () {
+            toGoogleDataTable: function () {
                 var googleDataTable = new google.visualization.DataTable();
 
                 var converters = [];
@@ -114,7 +114,7 @@ define('table2chart', function () {
 
         //console.log('makeColumnChart: ' + tableAdapter);
 
-        var data = tableAdapter.toGoogleChartDataTable();
+        var data = tableAdapter.toGoogleDataTable();
 
         tableAdapter.applySize();
 

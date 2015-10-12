@@ -2,6 +2,11 @@ define('table2chart', function () {
     "use strict";
 
     function tableDomAdapter(table) {
+
+        if (table.tagName.toLowerCase() !== 'table') {
+            throw Error('Data source must be a table');
+        }
+
         var domCaption, domTBody, domTHead;
 
         for (var i = 0; i < table.children.length; i++) {

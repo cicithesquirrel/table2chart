@@ -3,6 +3,27 @@ define('table2chart', function () {
 
     var me = {};
 
+    me.converters = {
+        // TODO handle i18n conversions
+        // TODO handle 'date', 'datetime', 'timeofday'
+        "number": function (val) {
+            return parseFloat(val);
+        },
+        "string": function (val) {
+            return val;
+        },
+        "boolean": function (val) {
+            if (val &&
+                (val.toLowerCase() === 'true' ||
+                    val.toLowerCase() === 'yes' ||
+                    val.toLowerCase() === 'on')) {
+                return true;
+            }
+            return false;
+        }
+    };
+
+
     me.DATA_TYPE_IGNORE = 'ignore';
 
     function tableDomAdapter(table) {
@@ -54,25 +75,9 @@ define('table2chart', function () {
                     else cell.dataType = 'number';
                 }
 
-                // TODO handle i18n conversions
-                if (cell.dataType === 'number') {
-                    cell.converter = parseFloat;
-                } else if (cell.dataType === 'string') {
-                    cell.converter = null;
-                } else if (cell.dataType === 'date') {
-                    // TODO handle 'date'
-                    cell.converter = null;
-                } else if (cell.dataType === 'datetime') {
-                    // TODO handle 'datetime'
-                    cell.converter = null;
-                } else if (cell.dataType === 'timeofday') {
-                    // TODO handle 'timeofday'
-                    cell.converter = null;
-                } else if (cell.dataType === 'boolean') {
-                    // TODO handle 'boolean'
-                    cell.converter = null;
+                if (cell.dataType && me.converters[cell.dataType]) {
+                    cell.converter = me.converters[cell.dataType];
                 } else {
-                    //default
                     cell.converter = null;
                 }
 

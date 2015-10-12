@@ -47,11 +47,15 @@ define('table2chart', function () {
 
                 cell.dataType = domCell.getAttribute('data-t2c-type');
 
+                // TODO guess dataType from column index
+
+                // TODO handle i18n conversions
                 if (cell.dataType === 'number') {
                     cell.converter = parseFloat;
                 } else if (cell.dataType === 'string') {
                     cell.converter = null;
                 } else {
+                    // TODO Add other data types
                     //default
                     cell.converter = null;
                 }

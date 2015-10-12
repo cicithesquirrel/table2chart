@@ -2,27 +2,34 @@ define('table2chart', function () {
     "use strict";
 
     function tableDomAdapter(table) {
+        var domCaption, domTBody, domTHead;
+
+        for (var i = 0; i < table.children.length; i++) {
+            var child = table.children[i];
+            if (child.tagName.toLowerCase() === 'caption') domCaption = child;
+            if (child.tagName.toLowerCase() === 'tbody') domTBody = child;
+            if (child.tagName.toLowerCase() === 'thead') domTHead = child;
+        }
+        if (!domTBody) throw Error('table has no "tbody" child');
+        if (!domTHead) throw Error('table has no "thead" child');
+        if (!domCaption) console.log('table has no "caption" child');
+
         return {
             getCaption: function () {
-                return table.children[0].textContent;
-            },
-            __getHead: function () {
-                return table.children[1];
-            },
-            __getBody: function () {
-                return table.children[2];
+                if (domCaption) return domCaption.textContent;
+                return null;
             },
             __getHeaderLine: function () {
-                return this.__getHead().children[0];
+                return domTHead.children[0];
             },
             __getLine: function (index) {
-                return this.__getBody().children[index];
+                return domTBody.children[index];
             },
             getColumnCount: function () {
                 return this.__getHeaderLine().childElementCount;
             },
             getLineCount: function () {
-                return this.__getBody().childElementCount;
+                return domTBody.childElementCount;
             },
             getHeaderCell: function (index) {
                 var cell = {};
@@ -90,9 +97,8 @@ define('table2chart', function () {
         if (sizeAsString) {
             var dim = sizeAsString.split('x');
             if (dim && dim.length === 2) {
-                var currentStyle = on.style;
-                if (!currentStyle) currentStyle = '';
-                on.style = currentStyle + 'width:' + dim[0] + ';height:' + dim[1] + ';';
+                on.style.width = dim[0];
+                on.style.height = dim[1];
             }
         }
     }
@@ -135,7 +141,8 @@ define('table2chart', function () {
             var options = getGoogleOptions(placeholder) || {};
 
             if (!options.title) {
-                options.title = tableAdapter.getCaption();
+                var caption = tableAdapter.getCaption();
+                if (caption) options.title = caption;
             }
 
             var chart = new google.visualization[kindId](placeholder);

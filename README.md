@@ -7,8 +7,9 @@ Builds [Google Chart](https://developers.google.com/chart/) from simple HTML tab
   * Add [RequireJS](http://www.requirejs.org/) if you do not already have
   * Add a `caption` to your `table` if you want a title to the chart. Add a `thead` and `tbody` to yout table to separate headers from data lines. `tfooter` will be ignored.
   * Add a `data-t2c-datatype` attribute on each column header (`/table/thead/tr/td@data-t2c-datatype`). Values allowed are:
-    * `string`: Labels
-    * `number`: Numeric value (_integer_ or _float_)
+    * `string`: Labels, default value for first column
+    * `number`: Numeric value (_integer_ or _float_), default value for all columns except the first
+    * `boolean`: Boolean value (_true_, _yes_, _on_ meaning `true`, others meaning `false`)
     * `ignore`: Marker to indicate that value should not appear in the chart
   * Add a `div` (or any other element that suits you) as the chart placeholder with the following attributes:
     * `data-t2c`: Chart type, name of the `google.visualization` method to call (see [Google Chart](https://developers.google.com/chart/) for possible values)
@@ -24,5 +25,5 @@ Want to know more? Have a look to the HTML files inside the `test` folder!
 # What is missing
 
 The following does not work:
-  * Other data types than `string` and `number` (e.g. `date`)
+  * Data types `date`, `datetime`, `timeofday`
   * Internationalized data formatting in the table

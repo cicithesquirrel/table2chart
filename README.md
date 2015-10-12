@@ -5,7 +5,7 @@ Builds [Google Chart](https://developers.google.com/chart/) from simple HTML tab
 # Usage
 
   * Add [RequireJS](http://www.requirejs.org/) if you do not already have
-  * Add a `caption` to your `table` if you want a title to the chart. Add a `thead` and `tbody` to yout table to separate headers from data lines. `tfooter` will be ignored.
+  * Add a `caption` to your `table` if you want a title to the chart. Add a `thead` and `tbody` to your table to separate headers from data lines. `tfooter` will be ignored.
   * Add a `data-t2c-datatype` attribute on each column header (`/table/thead/tr/td@data-t2c-datatype`). Values allowed are:
     * `string`: Labels, default value for first column
     * `number`: Numeric value (_integer_ or _float_), default value for all columns except the first

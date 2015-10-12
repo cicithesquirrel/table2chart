@@ -2,7 +2,6 @@
     "browser": true,
     "devel": true,
     "globals": {
-        "$": false,
         "define": false,
         "require": false,
         "google": false

@@ -16,4 +16,3 @@ Want to know more? Have a look to the HTML files inside the `test` folder!
 The following does not work:
   * Other data types than `string` and `number` (e.g. `date`)
   * Internationalized data formatting in the table
-  * Ignoring some columns

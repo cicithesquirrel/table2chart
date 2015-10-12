@@ -1,6 +1,8 @@
 define('table2chart', function () {
     "use strict";
 
+    var DATA_TYPE_IGNORE = 'ignore';
+
     function tableDomAdapter(table) {
 
         if (table.tagName.toLowerCase() !== 'table') {
@@ -77,7 +79,9 @@ define('table2chart', function () {
                 for (columnIndex = 0; columnIndex < this.getColumnCount(); columnIndex++) {
 
                     var cell = this.getHeaderCell(columnIndex);
-                    googleDataTable.addColumn(cell.dataType, cell.label);
+                    if (cell.dataType !== DATA_TYPE_IGNORE) {
+                        googleDataTable.addColumn(cell.dataType, cell.label);
+                    }
                 }
 
                 for (var lineIndex = 0; lineIndex < this.getLineCount(); lineIndex++) {
@@ -85,8 +89,14 @@ define('table2chart', function () {
                     var googleDataLine = [];
 
                     for (columnIndex = 0; columnIndex < this.getColumnCount(); columnIndex++) {
-                        var cellData = this.getDataCell(lineIndex, columnIndex);
-                        googleDataLine.push(cellData);
+
+                        var headerCell = this.getHeaderCell(columnIndex);
+                        if (headerCell.dataType !== DATA_TYPE_IGNORE) {
+                            var cellData = this.getDataCell(lineIndex, columnIndex);
+                            googleDataLine.push(cellData);
+                        }
+
+
                     }
 
                     googleDataTable.addRows([googleDataLine]);
@@ -123,6 +133,7 @@ define('table2chart', function () {
     }
 
     return {
+
         apply: function (placeholder, table) {
 
             if (!table) table = placeholder;

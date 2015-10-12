@@ -1,7 +1,9 @@
 define('table2chart', function () {
     "use strict";
 
-    var DATA_TYPE_IGNORE = 'ignore';
+    var me = {};
+
+    me.DATA_TYPE_IGNORE = 'ignore';
 
     function tableDomAdapter(table) {
 
@@ -97,7 +99,7 @@ define('table2chart', function () {
                 for (columnIndex = 0; columnIndex < this.getColumnCount(); columnIndex++) {
 
                     var cell = this.getHeaderCell(columnIndex);
-                    if (cell.dataType !== DATA_TYPE_IGNORE) {
+                    if (cell.dataType !== me.DATA_TYPE_IGNORE) {
                         googleDataTable.addColumn(cell.dataType, cell.label);
                     }
                 }
@@ -109,7 +111,7 @@ define('table2chart', function () {
                     for (columnIndex = 0; columnIndex < this.getColumnCount(); columnIndex++) {
 
                         var headerCell = this.getHeaderCell(columnIndex);
-                        if (headerCell.dataType !== DATA_TYPE_IGNORE) {
+                        if (headerCell.dataType !== me.DATA_TYPE_IGNORE) {
                             var cellData = this.getDataCell(lineIndex, columnIndex);
                             googleDataLine.push(cellData);
                         }
@@ -150,37 +152,36 @@ define('table2chart', function () {
         return undefined;
     }
 
-    return {
+    me.apply = function (placeholder, table) {
 
-        apply: function (placeholder, table) {
+        if (!table) table = placeholder;
 
-            if (!table) table = placeholder;
+        var tableId = placeholder.getAttribute('data-t2c-source');
 
-            var tableId = placeholder.getAttribute('data-t2c-source');
+        if (tableId) table = document.getElementById(tableId);
 
-            if (tableId) table = document.getElementById(tableId);
+        var kindId = placeholder.getAttribute('data-t2c');
 
-            var kindId = placeholder.getAttribute('data-t2c');
-
-            if (!google.visualization[kindId]) {
-                throw Error('Unknown Chart kind: ' + kindId);
-            }
-
-            var tableAdapter = tableDomAdapter(table);
-
-            var data = tableAdapter.toGoogleDataTable();
-
-            applySize(placeholder);
-
-            var options = getGoogleOptions(placeholder) || {};
-
-            if (!options.title) {
-                var caption = tableAdapter.getCaption();
-                if (caption) options.title = caption;
-            }
-
-            var chart = new google.visualization[kindId](placeholder);
-            chart.draw(data, options);
+        if (!google.visualization[kindId]) {
+            throw Error('Unknown Chart kind: ' + kindId);
         }
+
+        var tableAdapter = tableDomAdapter(table);
+
+        var data = tableAdapter.toGoogleDataTable();
+
+        applySize(placeholder);
+
+        var options = getGoogleOptions(placeholder) || {};
+
+        if (!options.title) {
+            var caption = tableAdapter.getCaption();
+            if (caption) options.title = caption;
+        }
+
+        var chart = new google.visualization[kindId](placeholder);
+        chart.draw(data, options);
     };
+
+    return me;
 });

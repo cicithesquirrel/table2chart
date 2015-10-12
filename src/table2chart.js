@@ -5,12 +5,31 @@ define('table2chart', function () {
 
     me.converters = {
         // TODO handle i18n conversions
-        // TODO handle 'date', 'datetime', 'timeofday'
         "number": function (val) {
             return parseFloat(val);
         },
         "string": function (val) {
             return val;
+        },
+        "date": function (val) {
+            var d = me.converters.datetime(val);
+            // only keep date
+            return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+        },
+        "datetime": function (val) {
+            return new Date(val);
+
+        },
+        "timeofday": function (val) {
+            var m = val.match(/^(\d\d?):(\d\d?):(\d\d?)(\.(\d\d?\d?))?$/);
+            if (m.length !== 5 && m.length !== 6) {
+                throw Error('Bad timeofday value: ' + val);
+            }
+            var retval = [m[1], m[2], m[3]];
+            if (m.length > 5 && m[5]) retval.push(m[5]);
+            return retval;
+
         },
         "boolean": function (val) {
             if (val &&

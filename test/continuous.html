@@ -16,6 +16,8 @@
     <h1>Line Chart</h1>
     <h2>Default style</h2>
     <div data-t2c="LineChart" data-t2c-source="sample-data" data-t2c-size="100%x600">&nbsp;</div>
+    <h2>Curved style</h2>
+    <div data-t2c="LineChart" data-t2c-source="sample-data" data-t2c-size="100%x600" data-t2c-options='{"curveType":"function"}'>&nbsp;</div>
 
     <h1>Area Chart</h1>
     <h2>Default style</h2>
@@ -33,93 +35,89 @@
 
     <h1>Sample Data Table</h1>
     <table id="sample-data">
-        <caption>Population structure by year</caption>
+        <caption>GDP growth (annual %)</caption>
         <thead>
             <tr>
                 <td data-t2c-type="string">Year</td>
-                <td data-t2c-type="number">Aged 0-19</td>
-                <td data-t2c-type="number">Aged 20-59</td>
-                <td data-t2c-type="number">Aged 60-64</td>
-                <td data-t2c-type="number">Aged 65 or more</td>
+                <td data-t2c-type="number">China</td>
+                <td data-t2c-type="number">European Union</td>
+                <td data-t2c-type="number">India</td>
+                <td data-t2c-type="number">Russian Federation</td>
+                <td data-t2c-type="number">United States</td>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>2000</td>
-                <td>15626640</td>
-                <td>32541228</td>
-                <td>2768623</td>
-                <td>9571659</td>
-            </tr>
-            <tr>
-                <td>2001</td>
-                <td>15651059</td>
-                <td>32850586</td>
-                <td>2732418</td>
-                <td>9707347</td>
-            </tr>
-            <tr>
-                <td>2002</td>
-                <td>15679605</td>
-                <td>33190355</td>
-                <td>2667612</td>
-                <td>9847498</td>
-            </tr>
-            <tr>
-                <td>2003</td>
-                <td>15709858</td>
-                <td>33474243</td>
-                <td>2666018</td>
-                <td>9973911</td>
-            </tr>
-            <tr>
-                <td>2004</td>
-                <td>15783973</td>
-                <td>33683368</td>
-                <td>2701115</td>
-                <td>10082606</td>
-            </tr>
-            <tr>
-                <td>2005</td>
-                <td>15848857</td>
-                <td>33901956</td>
-                <td>2745892</td>
-                <td>10233832</td>
-            </tr>
-            <tr>
                 <td>2006</td>
-                <td>15887753</td>
-                <td>34136236</td>
-                <td>2827885</td>
-                <td>10334243</td>
+                <td>12.7</td>
+                <td>3.4</td>
+                <td>9.3</td>
+                <td>8.2</td>
+                <td>2.7</td>
             </tr>
             <tr>
                 <td>2007</td>
-                <td>15924796</td>
-                <td>34173826</td>
-                <td>3119696</td>
-                <td>10382372</td>
+                <td>14.2</td>
+                <td>3.1</td>
+                <td>9.8</td>
+                <td>8.5</td>
+                <td>1.8</td>
             </tr>
             <tr>
                 <td>2008</td>
-                <td>15948885</td>
-                <td>34134793</td>
-                <td>3397006</td>
-                <td>10481175</td>
+                <td>9.6</td>
+                <td>0.5</td>
+                <td>3.9</td>
+                <td>5.2</td>
+                <td>-0.3</td>
             </tr>
             <tr>
                 <td>2009</td>
-                <td>15977308</td>
-                <td>34076200</td>
-                <td>3643459</td>
-                <td>10607533</td>
+                <td>9.2</td>
+                <td>-4.4</td>
+                <td>8.5</td>
+                <td>-7.8</td>
+                <td>-2.8</td>
             </tr>
             <tr>
                 <td>2010</td>
-                <td>16010535</td>
-                <td>33997230</td>
-                <td>3873473</td>
-                <td>10731701</td>
+                <td>10.6</td>
+                <td>2.1</td>
+                <td>10.3</td>
+                <td>4.5</td>
+                <td>2.5</td>
+            </tr>
+            <tr>
+                <td>2011</td>
+                <td>9.5</td>
+                <td>1.8</td>
+                <td>6.6</td>
+                <td>4.3</td>
+                <td>1.6</td>
+            </tr>
+            <tr>
+                <td>2012</td>
+                <td>7.8</td>
+                <td>-0.5</td>
+                <td>5.1</td>
+                <td>3.4</td>
+                <td>2.3</td>
+            </tr>
+            <tr>
+                <td>2013</td>
+                <td>7.7</td>
+                <td>0.1</td>
+                <td>6.9</td>
+                <td>1.3</td>
+                <td>2.2</td>
+            </tr>
+            <tr>
+                <td>2014</td>
+                <td>7.4</td>
+                <td>1.3</td>
+                <td>7.4</td>
+                <td>0.6</td>
+                <td>2.4</td>
             </tr>
         </tbody>
     </table>

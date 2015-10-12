@@ -57,8 +57,19 @@ define('table2chart', function () {
                     cell.converter = parseFloat;
                 } else if (cell.dataType === 'string') {
                     cell.converter = null;
+                } else if (cell.dataType === 'date') {
+                    // TODO handle 'date'
+                    cell.converter = null;
+                } else if (cell.dataType === 'datetime') {
+                    // TODO handle 'datetime'
+                    cell.converter = null;
+                } else if (cell.dataType === 'timeofday') {
+                    // TODO handle 'timeofday'
+                    cell.converter = null;
+                } else if (cell.dataType === 'boolean') {
+                    // TODO handle 'boolean'
+                    cell.converter = null;
                 } else {
-                    // TODO Add other data types
                     //default
                     cell.converter = null;
                 }

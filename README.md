@@ -9,6 +9,9 @@ Builds [Google Chart](https://developers.google.com/chart/) from simple HTML tab
   * Add a `data-t2c-datatype` attribute on each column header (`/table/thead/tr/td@data-t2c-datatype`). Values allowed are:
     * `string`: Labels, default value for first column
     * `number`: Numeric value (_integer_ or _float_), default value for all columns except the first
+    * `datetime`: Anything that can be parsed by JS `new Date(v)`
+    * `date`: Like `datetime` but only date, month and year are kept
+    * `timeofday`: Any string matching the following pattern `^(\d\d?):(\d\d?):(\d\d?)(\.(\d\d?\d?))?$` (e.g. _23:15:32_ or _23:15:32.652_)
     * `boolean`: Boolean value (_true_, _yes_, _on_ meaning `true`, others meaning `false`)
     * `ignore`: Marker to indicate that value should not appear in the chart
   * Add a `div` (or any other element that suits you) as the chart placeholder with the following attributes:
@@ -25,5 +28,4 @@ Want to know more? Have a look to the HTML files inside the `test` folder!
 # What is missing
 
 The following does not work:
-  * Data types `date`, `datetime`, `timeofday`
   * Internationalized data formatting in the table

@@ -223,6 +223,7 @@ define('table2chart', function () {
 
         var options = placeholderAdapter.getGoogleOptions(tableAdapter);
 
+        // TODO use ChartWrapper https://developers.google.com/chart/interactive/docs/drawing_charts#chartwrapper
         var chart = placeholderAdapter.createChart();
 
         chart.draw(data, options);

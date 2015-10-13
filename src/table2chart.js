@@ -42,7 +42,7 @@ define('table2chart', function () {
         }
     };
 
-
+    // TODO replace the 'ignore' datatype with an option on the placeholder
     me.DATA_TYPE_IGNORE = 'ignore';
 
     function tableDomAdapter(table) {

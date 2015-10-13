@@ -199,14 +199,28 @@ define('table2chart', function () {
                 return tableAdapter;
             },
 
-            createChart: function () {
+            drawChart: function (table) {
                 var kindId = placeholder.getAttribute('data-t2c');
 
                 if (!google.visualization[kindId]) {
                     throw Error('Unknown Chart kind: ' + kindId);
                 }
 
-                return new google.visualization[kindId](placeholder);
+                var tableAdapter = this.getTableAdapter(table);
+
+                var data = tableAdapter.toGoogleDataTable();
+
+                this.applySize();
+
+                var options = this.getGoogleOptions(tableAdapter);
+
+                var wrapper = new google.visualization.ChartWrapper({
+                    'chartType': kindId,
+                    'dataTable': data,
+                    'options': options,
+                    'containerId': placeholder
+                });
+                wrapper.draw();
             }
         };
     }
@@ -215,18 +229,7 @@ define('table2chart', function () {
 
         var placeholderAdapter = placeholderDomAdapter(placeholder);
 
-        var tableAdapter = placeholderAdapter.getTableAdapter(table);
-
-        var data = tableAdapter.toGoogleDataTable();
-
-        placeholderAdapter.applySize();
-
-        var options = placeholderAdapter.getGoogleOptions(tableAdapter);
-
-        // TODO use ChartWrapper https://developers.google.com/chart/interactive/docs/drawing_charts#chartwrapper
-        var chart = placeholderAdapter.createChart();
-
-        chart.draw(data, options);
+        placeholderAdapter.drawChart(table);
     };
 
     return me;

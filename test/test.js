@@ -10,7 +10,7 @@ require(['table2chart', 'jquery'],
         // on-load, apply charting
         $(function () {
             $('[data-t2c]').each(function (indexInArray, o) {
-                t2c.apply(o);
+                t2c.drawGoogleChart(o);
             });
         });
     });

@@ -199,7 +199,7 @@ define('table2chart', function () {
                 return tableAdapter;
             },
 
-            drawChart: function (table) {
+            drawGoogleChart: function (table) {
                 var kindId = placeholder.getAttribute('data-t2c');
 
                 if (!google.visualization[kindId]) {
@@ -225,11 +225,11 @@ define('table2chart', function () {
         };
     }
 
-    me.apply = function (placeholder, table) {
+    me.drawGoogleChart = function (placeholder, table) {
 
         var placeholderAdapter = placeholderDomAdapter(placeholder);
 
-        placeholderAdapter.drawChart(table);
+        placeholderAdapter.drawGoogleChart(table);
     };
 
     return me;

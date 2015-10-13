@@ -151,59 +151,80 @@ define('table2chart', function () {
         };
     }
 
-    function applySize(on) {
-        var sizeAsString = on.getAttribute('data-t2c-size');
-        if (sizeAsString) {
-            var dim = sizeAsString.split('x');
-            if (dim && dim.length === 2) {
-                on.style.width = dim[0];
-                on.style.height = dim[1];
-            }
-        }
-    }
+    function placeholderDomAdapter(placeholder) {
+        return {
+            applySize: function () {
+                var sizeAsString = placeholder.getAttribute('data-t2c-size');
+                if (sizeAsString) {
+                    var dim = sizeAsString.split('x');
+                    if (dim && dim.length === 2) {
+                        placeholder.style.width = dim[0];
+                        placeholder.style.height = dim[1];
+                    }
+                }
+            },
+
+            getGoogleOptions: function (tableAdapter) {
 
 
-    function getGoogleOptions(on) {
-        var optAsString = on.getAttribute('data-t2c-options');
-        //console.log(optAsString);
-        if (optAsString) {
-            try {
-                return JSON.parse(optAsString);
-            } catch (err) {
-                throw Error('Invalid JSON options: ' + optAsString);
+                var options = {};
+
+                var optAsString = placeholder.getAttribute('data-t2c-options');
+                //console.log(optAsString);
+                if (optAsString) {
+                    try {
+                        options = JSON.parse(optAsString);
+                    } catch (err) {
+                        throw Error('Invalid JSON options: ' + optAsString);
+                    }
+                }
+
+                if (!options.title) {
+                    var caption = tableAdapter.getCaption();
+                    if (caption) options.title = caption;
+                }
+
+                return options;
+            },
+
+            getTableAdapter: function (table) {
+                if (!table) table = placeholder;
+
+                var tableId = placeholder.getAttribute('data-t2c-source');
+
+                if (tableId) table = document.getElementById(tableId);
+
+                var tableAdapter = tableDomAdapter(table);
+
+                return tableAdapter;
+            },
+
+            createChart: function () {
+                var kindId = placeholder.getAttribute('data-t2c');
+
+                if (!google.visualization[kindId]) {
+                    throw Error('Unknown Chart kind: ' + kindId);
+                }
+
+                return new google.visualization[kindId](placeholder);
             }
-        }
-        return undefined;
+        };
     }
 
     me.apply = function (placeholder, table) {
 
-        if (!table) table = placeholder;
+        var placeholderAdapter = placeholderDomAdapter(placeholder);
 
-        var tableId = placeholder.getAttribute('data-t2c-source');
-
-        if (tableId) table = document.getElementById(tableId);
-
-        var kindId = placeholder.getAttribute('data-t2c');
-
-        if (!google.visualization[kindId]) {
-            throw Error('Unknown Chart kind: ' + kindId);
-        }
-
-        var tableAdapter = tableDomAdapter(table);
+        var tableAdapter = placeholderAdapter.getTableAdapter(table);
 
         var data = tableAdapter.toGoogleDataTable();
 
-        applySize(placeholder);
+        placeholderAdapter.applySize();
 
-        var options = getGoogleOptions(placeholder) || {};
+        var options = placeholderAdapter.getGoogleOptions(tableAdapter);
 
-        if (!options.title) {
-            var caption = tableAdapter.getCaption();
-            if (caption) options.title = caption;
-        }
+        var chart = placeholderAdapter.createChart();
 
-        var chart = new google.visualization[kindId](placeholder);
         chart.draw(data, options);
     };
 

@@ -10,10 +10,8 @@ Well, OK, you'll have to add a few metadata, I'll admit that...
 ## Dumbest 
 
   1. ["Require"](http://www.requirejs.org/) `table2chart` in your page.
-  2. Change the following on your table:
-    1. Want a title? Add a `caption` element to your `table`.
-    2. Separate headers from data lines with `thead` and `tbody` elements.
-    3. Add a `data-t2c` attribute to choose the Chart type (i.e. the name of the `google.visualization` method to call, see [Google Chart](https://developers.google.com/chart/) for possible values)
+  2. Separate headers from data lines with `thead` and `tbody` elements (that's a common good practice, and should've already done this, no?)
+  3. Choose a Chart Type by adding a `data-t2c` attribute (possible values are the name of the `google.visualization` method to call to build the chart, see [Google Chart](https://developers.google.com/chart/))
   3. When the page is loaded (use JQuery or Google API for this), call `table2chart.apply(table)`
 
 And that's it!
@@ -23,6 +21,7 @@ And if this doesn't suit you, well... sorry pal, you fell out of the defaults an
 ## Full options
 
   * Start by _dumbest usage_
+  * Want a title? Add a `caption` element to your `table`.
   * You can specify a column datatype with the `data-t2c-datatype` attribute the column header (`/table/thead/tr/td@data-t2c-datatype`). Values allowed are:
     * `string`: Labels, default value for first column;;
     * `number`: Numeric value (_integer_ or _float_), default value for all columns except the first

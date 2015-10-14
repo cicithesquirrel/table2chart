@@ -22,7 +22,7 @@ define('table2chart', function () {
 
         },
         "timeofday": function (val) {
-            var m = val.match(/^(\d\d?):(\d\d?):(\d\d?)(\.(\d\d?\d?))?$/);
+            var m = val.match(/^(\d{1,2}):(\d{1,2}):(\d{1,2})(\.(\d{1,3}))?$/);
             if (m.length !== 5 && m.length !== 6) {
                 throw Error('Bad timeofday value: ' + val);
             }

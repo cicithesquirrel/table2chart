@@ -1,0 +1,21 @@
+{
+    "name": "table2chart",
+    "version": "1.0.0",
+    "description": "HTML table to Google Chart converter",
+    "author": "Cyril \"cicithesquirrel\"",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cicithesquirrel/table2chart.git"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "del": "~2.0.2",
+        "gulp": "~3.9.0",
+        "gulp-concat": "~2.6.0",
+        "gulp-coverage": "~0.3.36",
+        "gulp-sourcemaps": "~1.6.0",
+        "gulp-uglify": "~1.4.1"
+    },
+    "readme": "README.md"
+}

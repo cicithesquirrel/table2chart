@@ -37,7 +37,7 @@ And if this doesn't suit you, well... sorry pal, you fell out of the defaults an
       * `data-t2c-size`: (Optional) Size of the chart (e.g. `100%x900` for `width:100%;height:900`). When not defined, [Google Chart](https://developers.google.com/chart/) will use the size of the placeholder;
       * `data-t2c-options`: (Optional) [JSON](http://json.org/) options for [Google Chart](https://developers.google.com/chart/):
         * See [Google Chart](https://developers.google.com/chart/) for available options for the chart type that you chose;
-        *  Defaults to empty object `{}`;
+        * Defaults to empty object `{}`;
         * As JSON syntax imposes the use of `"` (_double quotes_) for property names and string values, this attribute should be put between `'` (_single quotes_).
     * When the page is fully loaded, call `table2chart.drawGoogleChart(placeholder, table)`.
   

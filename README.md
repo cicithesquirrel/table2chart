@@ -12,7 +12,7 @@ Well, OK, you'll have to add a few metadata, I'll admit that...
   1. ["Require"](http://www.requirejs.org/) `table2chart` in your page.
   2. Separate headers from data lines with `thead` and `tbody` elements (that's a common good practice, and should've already done this, no?)
   3. Choose a Chart Type by adding a `data-t2c` attribute (possible values are the name of the `google.visualization` method to call to build the chart, see [Google Chart](https://developers.google.com/chart/))
-  3. When the page is loaded (use [JQuery](http://api.jquery.com/ready/) or [Google API](https://developers.google.com/feed/v1/reference#setOnLoadCallback) for this), call `table2chart.apply(table)`
+  3. When the page is loaded (use [JQuery](http://api.jquery.com/ready/) or [Google API](https://developers.google.com/feed/v1/reference#setOnLoadCallback) for this), call `table2chart.drawGoogleChart(table)`
 
 And that's it!
 
@@ -39,7 +39,7 @@ And if this doesn't suit you, well... sorry pal, you fell out of the defaults an
         * See [Google Chart](https://developers.google.com/chart/) for available options for the chart type that you chose;
         *  Defaults to empty object `{}`;
         * As JSON syntax imposes the use of `"` (_double quotes_) for property names and string values, this attribute should be put between `'` (_single quotes_).
-    * When the page is fully loaded, call `table2chart.apply(placeholder, table)`.
+    * When the page is fully loaded, call `table2chart.drawGoogleChart(placeholder, table)`.
   
 Want to know more? Have a look to the HTML files inside the `test` folder!
 

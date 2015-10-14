@@ -4,6 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Charts for single-column tables</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}">
         /* */
     </script>
@@ -13,21 +15,21 @@
 </head>
 
 <body>
-    <h1>Histogram Chart</h1>
+    <h1>Histogram Chart <a href="https://developers.google.com/chart/interactive/docs/gallery/histogram" target="_blank"><i class="fa fa-google"></i></a></h1>
     <h2>Default style</h2>
     <div data-t2c="Histogram" data-t2c-source="sample-data" data-t2c-size="100%x600">&nbsp;</div>
 
-    <h1>Pie Chart</h1>
+    <h1>Pie Chart <a href="https://developers.google.com/chart/interactive/docs/gallery/piechart" target="_blank"><i class="fa fa-google"></i></a></h1>
     <h2>Default style</h2>
     <div data-t2c="PieChart" data-t2c-source="sample-data" data-t2c-size="100%x600">&nbsp;</div>
     <h2>Donut</h2>
     <div data-t2c="PieChart" data-t2c-source="sample-data" data-t2c-size="100%x600" data-t2c-options='{"pieHole":0.4}'>&nbsp;</div>
 
-    <h1>Geo Chart (centered on Europe)</h1>
+    <h1>Geo Chart (centered on Europe) <a href="https://developers.google.com/chart/interactive/docs/gallery/geochart" target="_blank"><i class="fa fa-google"></i></a></h1>
     <h2>Default style</h2>
     <div data-t2c="GeoChart" data-t2c-source="sample-data" data-t2c-size="100%x600" data-t2c-options='{"region":150}'>&nbsp;</div>
     <h2>Marker style with colors</h2>
-    <div data-t2c="GeoChart" data-t2c-source="sample-data" data-t2c-size="100%x600" data-t2c-options='{"displayMode":"markers","region":150,"colorAxis":{"colors":["#CC9900","#CC0000"]},"datalessRegionColor":"#EEE","backgroundColor":"#EFF"}'>&nbsp;</div>
+    <div data-t2c="GeoChart" data-t2c-source="sample-data" data-t2c-size="100%x600" data-t2c-options='{"displayMode":"markers","region":150,"colorAxis":{"colors":["#CC9900","#CC0000"]},"datalessRegionColor":"#666","backgroundColor":"#999"}'>&nbsp;</div>
 
     <h1>Sample Data Table</h1>
     <table id="sample-data">

@@ -51,34 +51,40 @@ define('table2chart', function () {
             throw Error('Data source must be a table');
         }
 
-        var domCaption, domTBody, domTHead;
+        function getTableComponent(table) {
+            var tableComponents = {};
+            for (var i = 0; i < table.children.length; i++) {
+                var child = table.children[i];
+                if (child.tagName.toLowerCase() === 'caption') tableComponents.caption = child;
+                if (child.tagName.toLowerCase() === 'tbody') tableComponents.tbody = child;
+                if (child.tagName.toLowerCase() === 'thead') tableComponents.thead = child;
+            }
 
-        for (var i = 0; i < table.children.length; i++) {
-            var child = table.children[i];
-            if (child.tagName.toLowerCase() === 'caption') domCaption = child;
-            if (child.tagName.toLowerCase() === 'tbody') domTBody = child;
-            if (child.tagName.toLowerCase() === 'thead') domTHead = child;
+            if (!tableComponents.tbody) throw Error('table has no "tbody" child');
+            if (!tableComponents.thead) throw Error('table has no "thead" child');
+            if (!tableComponents.caption) console.log('table has no "caption" child');
+
+            return tableComponents;
         }
-        if (!domTBody) throw Error('table has no "tbody" child');
-        if (!domTHead) throw Error('table has no "thead" child');
-        if (!domCaption) console.log('table has no "caption" child');
 
         return {
+            tableComponents: getTableComponent(table),
+
             getCaption: function () {
-                if (domCaption) return domCaption.textContent;
+                if (this.tableComponents.caption) return this.tableComponents.caption.textContent;
                 return null;
             },
             __getHeaderLine: function () {
-                return domTHead.children[0];
+                return this.tableComponents.thead.children[0];
             },
             __getLine: function (index) {
-                return domTBody.children[index];
+                return this.tableComponents.tbody.children[index];
             },
             getColumnCount: function () {
                 return this.__getHeaderLine().childElementCount;
             },
             getLineCount: function () {
-                return domTBody.childElementCount;
+                return this.tableComponents.tbody.childElementCount;
             },
             getHeaderCell: function (index) {
                 var cell = {};
@@ -221,6 +227,8 @@ define('table2chart', function () {
                     'containerId': placeholder
                 });
                 wrapper.draw();
+
+                return wrapper;
             }
         };
     }
@@ -229,7 +237,7 @@ define('table2chart', function () {
 
         var placeholderAdapter = placeholderDomAdapter(placeholder);
 
-        placeholderAdapter.drawGoogleChart(table);
+        return placeholderAdapter.drawGoogleChart(table);
     };
 
     return me;

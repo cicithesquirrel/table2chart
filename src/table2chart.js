@@ -6,7 +6,14 @@ define('table2chart', function () {
     me.converters = {
         // TODO handle i18n conversions
         "number": function (val) {
-            return parseFloat(val);
+            var retval;
+            if (val && val.trim() !== '') {
+                retval = parseFloat(val);
+                if (isNaN(retval)) {
+                    retval = undefined;
+                }
+            }
+            return retval;
         },
         "string": function (val) {
             return val;

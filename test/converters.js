@@ -36,7 +36,6 @@ describe('"converters" tests', function () {
     });
 
     it('number is undefined with letters', function () {
-        console.log(t2c.converters.number('abc'));
         test.undefined(t2c.converters.number('abc'));
     });
 

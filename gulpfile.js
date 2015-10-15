@@ -9,11 +9,12 @@ var concat = require('gulp-concat');
 
 var paths = {
     scripts: ['src/*.js'],
-    build: 'table2chart.min.js'
+    build: 'table2chart.min.js',
+    builddir: 'public'
 };
 
 gulp.task('clean', function (endCallback) {
-    del(['build']);
+    del([paths.builddir]);
     endCallback();
 });
 
@@ -25,7 +26,7 @@ gulp.task('scripts', ['clean'], function () {
         .pipe(uglify())
         .pipe(concat(paths.build))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest(paths.builddir + '/build'));
 });
 
 gulp.task('default', ['clean', 'scripts']);

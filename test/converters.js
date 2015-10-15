@@ -11,32 +11,39 @@ var t2c = requirejs('table2chart');
 
 describe('"converters" tests', function () {
 
-    it('string', function () {
-        test.string(t2c.converters.string('some string')).is('some string');
+    describe('string', function () {
+        it('Accept valid string', function () {
+            test.string(t2c.converters.string('some string')).is('some string');
+        });
+
+        it('Accept empty string', function () {
+            test.string(t2c.converters.string('')).is('');
+        });
+
+        it('Accept spaces', function () {
+            test.string(t2c.converters.string('   ')).is('   ');
+        });
     });
 
-    it('string is empty', function () {
-        test.string(t2c.converters.string('')).is('');
-    });
+    describe('number', function () {
+        it('Convert integer', function () {
+            test.number(t2c.converters.number('123')).is(123);
+        });
 
-    it('number is integer', function () {
-        test.number(t2c.converters.number('123')).is(123);
-    });
+        it('Convert float', function () {
+            test.number(t2c.converters.number('123.45')).is(123.45);
+        });
 
-    it('number is float', function () {
-        test.number(t2c.converters.number('123.45')).is(123.45);
-    });
+        it('Convert empty string to undefined', function () {
+            test.undefined(t2c.converters.number(''));
+        });
 
-    it('number is undefined', function () {
-        test.undefined(t2c.converters.number(''));
-    });
+        it('Convert spaces to undefined', function () {
+            test.undefined(t2c.converters.number('  '));
+        });
 
-    it('number is undefined with spaces', function () {
-        test.undefined(t2c.converters.number('  '));
+        it('Convert letters to undefined', function () {
+            test.undefined(t2c.converters.number('abc'));
+        });
     });
-
-    it('number is undefined with letters', function () {
-        test.undefined(t2c.converters.number('abc'));
-    });
-
 });

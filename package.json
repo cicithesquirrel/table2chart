@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "description": "HTML table to Google Chart converter",
     "scripts": {
-        "test": "mocha test -R spec --recursive"
+        "test": "mocha",
+        "coverage": "istanbul cover --hook-run-in-context --report html --dir public/reports/istanbul _mocha"
     },
     "author": "Cyril \"cicithesquirrel\"",
     "license": "MIT",

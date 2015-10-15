@@ -126,4 +126,48 @@ describe('"converters" tests', function () {
             test.undefined(t2c.converters.boolean('sdfjkyt'));
         });
     });
+
+    describe('date', function () {
+        it('Accept valid date in ISO 8601', function () {
+            test.date(t2c.converters.date('2015-03-25')).is(new Date('2015-03-25'));
+        });
+
+        it('Accept valid date in ISO 8601 with hour', function () {
+            test.date(t2c.converters.date('2015-03-25T11:22:33.444Z')).is(new Date(Date.parse('2015-03-25')));
+        });
+
+        it('Accept valid date in millis', function () {
+            test.date(t2c.converters.date('1444929318525')).is(new Date(Date.parse('2015-10-15')));
+        });
+
+        it('Convert empty string to undefined', function () {
+            test.undefined(t2c.converters.date(''));
+        });
+
+        it('Convert spaces to undefined', function () {
+            test.undefined(t2c.converters.date('  '));
+        });
+    });
+
+    describe('datetime', function () {
+        it('Accept valid datetime in ISO 8601 with hour', function () {
+            test.date(t2c.converters.datetime('2015-03-25T23:45:01.03Z')).is(new Date(Date.parse('2015-03-25T23:45:01.030Z')));
+        });
+
+        it('Accept valid datetime in ISO 8601 without hour', function () {
+            test.date(t2c.converters.datetime('2015-03-25')).is(new Date(Date.parse('2015-03-25T00:00:00.000Z')));
+        });
+
+        it('Accept valid date in millis', function () {
+            test.date(t2c.converters.datetime('1444929318525')).is(new Date(Date.parse('2015-10-15T17:15:18.525Z')));
+        });
+
+        it('Convert empty string to undefined', function () {
+            test.undefined(t2c.converters.datetime(''));
+        });
+
+        it('Convert spaces to undefined', function () {
+            test.undefined(t2c.converters.datetime('  '));
+        });
+    });
 });

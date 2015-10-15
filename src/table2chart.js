@@ -27,14 +27,28 @@ define('table2chart', function () {
             return val.trim();
         },
         "date": function (val) {
-            var d = me.converters.datetime(val.trim());
-            // only keep date
-            return new Date(d.getFullYear(), d.getMonth(), d.getDate());
-
+            var retval = me.converters.datetime(val);
+            if (retval) {
+                retval.setUTCHours(0);
+                retval.setUTCMinutes(0);
+                retval.setUTCSeconds(0);
+                retval.setUTCMilliseconds(0);
+            }
+            return retval;
         },
         "datetime": function (val) {
-            return new Date(val.trim());
-
+            var retval;
+            if (isNotEmpty(val)) {
+                val = val.trim();
+                var m = val.match(/^\d+$/);
+                if (m) {
+                    val = parseInt(val);
+                } else {
+                    val = Date.parse(val);
+                }
+                retval = new Date(val);
+            }
+            return retval;
         },
         "timeofday": function (val) {
             var retval;

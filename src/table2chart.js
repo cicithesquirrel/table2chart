@@ -3,11 +3,15 @@ define('table2chart', function () {
 
     var me = {};
 
+    function isNotEmpty(val) {
+        return val && val.trim() !== '';
+    }
+
     me.converters = {
         // TODO handle i18n conversions
         "number": function (val) {
             var retval;
-            if (val && val.trim() !== '') {
+            if (isNotEmpty(val)) {
                 retval = parseFloat(val);
                 if (isNaN(retval)) {
                     retval = undefined;
@@ -29,12 +33,16 @@ define('table2chart', function () {
 
         },
         "timeofday": function (val) {
-            var m = val.match(/^(\d{1,2}):(\d{1,2}):(\d{1,2})(\.(\d{1,3}))?$/);
-            if (m.length !== 5 && m.length !== 6) {
-                throw Error('Bad timeofday value: ' + val);
+            var retval;
+            if (isNotEmpty(val)) {
+                var m = val.match(/^(\d{1,2}):(\d{1,2})(:(\d{1,2})(\.(\d{1,3}))?)?$/);
+                if (m) {
+                    retval = [parseInt(m[1]), parseInt(m[2])];
+                    if (m[4]) retval.push(parseInt(m[4]));
+                    else retval.push(0);
+                    if (m[6]) retval.push(parseInt(m[6]));
+                }
             }
-            var retval = [m[1], m[2], m[3]];
-            if (m.length > 5 && m[5]) retval.push(m[5]);
             return retval;
 
         },

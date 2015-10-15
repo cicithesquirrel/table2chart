@@ -46,4 +46,34 @@ describe('"converters" tests', function () {
             test.undefined(t2c.converters.number('abc'));
         });
     });
+
+    describe('timeofday', function () {
+        it('Convert hour without millis', function () {
+            test.array(t2c.converters.timeofday('1:2:3')).is([1, 2, 3]);
+        });
+
+        it('Convert hour with millis', function () {
+            test.array(t2c.converters.timeofday('1:2:3.4')).is([1, 2, 3, 4]);
+        });
+
+        it('Convert hour without seconds', function () {
+            test.array(t2c.converters.timeofday('1:2')).is([1, 2, 0]);
+        });
+
+        it('Convert invalid string to undefined', function () {
+            test.undefined(t2c.converters.timeofday('00::'));
+        });
+
+        it('Convert letters to undefined', function () {
+            test.undefined(t2c.converters.timeofday('abc'));
+        });
+
+        it('Convert empty string to undefined', function () {
+            test.undefined(t2c.converters.timeofday(''));
+        });
+
+        it('Convert spaces to undefined', function () {
+            test.undefined(t2c.converters.timeofday('  '));
+        });
+    });
 });

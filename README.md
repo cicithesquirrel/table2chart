@@ -27,7 +27,7 @@ And if this doesn't suit you, well... sorry pal, you fell out of the defaults an
     * `number`: Numeric value (_integer_ or _float_), default value for all columns except the first;
     * `datetime`: Anything that can be parsed by JS `new Date(string)` (see [W3Schools](http://www.w3schools.com/js/js_date_formats.asp)' tutorial);
     * `date`: Like `datetime` but only date, month and year are kept;
-    * `timeofday`: Any string matching the following pattern `^(\d{1,2}):(\d{1,2}):(\d{1,2})(\.(\d{1,3}))?` (e.g. _23:15:32_ or _23:15:32.652_);
+    * `timeofday`: Any string matching the following pattern `^(\d{1,2}):(\d{1,2})(:(\d{1,2})(\.(\d{1,3}))?)?$` (e.g. _23:15:32_ or _23:15:32.652_ or _23:15_);
     * `boolean`: Boolean value (_true_, _yes_, _on_ meaning `true`, others meaning `false`);
     * `ignore`: Stub type to indicate that value should not appear in any chart.
   * You can draw your chart on a any element in the page, not only the table:

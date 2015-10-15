@@ -41,7 +41,7 @@ And if this doesn't suit you, well... sorry pal, you fell out of the defaults an
         * As JSON syntax imposes the use of `"` (_double quotes_) for property names and string values, this attribute should be put between `'` (_single quotes_).
     * When the page is fully loaded, call `table2chart.drawGoogleChart(placeholder, table)`.
   
-Want to know more? Have a look to the HTML files inside the `test` folder!
+Want to know more? Have a look to the HTML files inside the `demo` folder!
 
 # What is missing
 

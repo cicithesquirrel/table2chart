@@ -122,8 +122,6 @@ define('table2chart', function () {
             toGoogleDataTable: function () {
                 var googleDataTable = new google.visualization.DataTable();
 
-                var converters = [];
-
                 var columnIndex;
 
                 for (columnIndex = 0; columnIndex < this.getColumnCount(); columnIndex++) {

@@ -12,29 +12,34 @@ define('table2chart', function () {
         "number": function (val) {
             var retval;
             if (isNotEmpty(val)) {
-                retval = parseFloat(val);
-                if (isNaN(retval)) {
-                    retval = undefined;
+                val = val.trim();
+                var m = val.match(/^(\d+(.\d+))$/);
+                if (m) {
+                    retval = parseFloat(val.trim());
+                    if (isNaN(retval)) {
+                        retval = undefined;
+                    }
                 }
             }
             return retval;
         },
         "string": function (val) {
-            return val;
+            return val.trim();
         },
         "date": function (val) {
-            var d = me.converters.datetime(val);
+            var d = me.converters.datetime(val.trim());
             // only keep date
             return new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
         },
         "datetime": function (val) {
-            return new Date(val);
+            return new Date(val.trim());
 
         },
         "timeofday": function (val) {
             var retval;
             if (isNotEmpty(val)) {
+                val = val.trim();
                 var m = val.match(/^(\d{1,2}):(\d{1,2})(:(\d{1,2})(\.(\d{1,3}))?)?$/);
                 if (m) {
                     retval = [parseInt(m[1]), parseInt(m[2])];
@@ -47,13 +52,20 @@ define('table2chart', function () {
 
         },
         "boolean": function (val) {
-            if (val &&
-                (val.toLowerCase() === 'true' ||
-                    val.toLowerCase() === 'yes' ||
-                    val.toLowerCase() === 'on')) {
-                return true;
+            var retval;
+            if (isNotEmpty(val)) {
+                var lower = val.trim().toLowerCase();
+                if (lower === 'true' ||
+                    lower === 'yes' ||
+                    lower === 'on') {
+                    retval = true;
+                } else if (lower === 'false' ||
+                    lower === 'no' ||
+                    lower === 'off') {
+                    retval = false;
+                }
             }
-            return false;
+            return retval;
         }
     };
 

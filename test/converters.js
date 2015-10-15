@@ -21,7 +21,7 @@ describe('"converters" tests', function () {
         });
 
         it('Accept spaces', function () {
-            test.string(t2c.converters.string('   ')).is('   ');
+            test.string(t2c.converters.string('   ')).is('');
         });
     });
 
@@ -44,6 +44,14 @@ describe('"converters" tests', function () {
 
         it('Convert letters to undefined', function () {
             test.undefined(t2c.converters.number('abc'));
+        });
+
+        it('Convert valid value with spaces', function () {
+            test.number(t2c.converters.number(' 123 ')).is(123);
+        });
+
+        it('Convert value with spaces inside to undefined', function () {
+            test.undefined(t2c.converters.number(' 1 2 3 '));
         });
     });
 
@@ -74,6 +82,48 @@ describe('"converters" tests', function () {
 
         it('Convert spaces to undefined', function () {
             test.undefined(t2c.converters.timeofday('  '));
+        });
+
+        it('Convert valid value with spaces', function () {
+            test.array(t2c.converters.timeofday(' 1:2:3.4 ')).is([1, 2, 3, 4]);
+        });
+    });
+
+    describe('boolean', function () {
+        it('Convert "true"', function () {
+            test.bool(t2c.converters.boolean('tRuE')).isTrue();
+        });
+
+        it('Convert "yes"', function () {
+            test.bool(t2c.converters.boolean('yEs')).isTrue();
+        });
+
+        it('Convert "on"', function () {
+            test.bool(t2c.converters.boolean('oN')).isTrue();
+        });
+
+        it('Convert "false"', function () {
+            test.bool(t2c.converters.boolean('fAlSe')).isFalse();
+        });
+
+        it('Convert "no"', function () {
+            test.bool(t2c.converters.boolean('nO')).isFalse();
+        });
+
+        it('Convert "off"', function () {
+            test.bool(t2c.converters.boolean('oFf')).isFalse();
+        });
+
+        it('Convert empty string to undefined', function () {
+            test.undefined(t2c.converters.boolean(''));
+        });
+
+        it('Convert spaces to undefined', function () {
+            test.undefined(t2c.converters.boolean('  '));
+        });
+
+        it('Convert unspecified value to undefined', function () {
+            test.undefined(t2c.converters.boolean('sdfjkyt'));
         });
     });
 });

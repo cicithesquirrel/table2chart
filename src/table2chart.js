@@ -16,9 +16,6 @@ define('table2chart', function () {
                 var m = val.match(/^(\d+(.\d+))$/);
                 if (m) {
                     retval = parseFloat(val.trim());
-                    if (isNaN(retval)) {
-                        retval = undefined;
-                    }
                 }
             }
             return retval;

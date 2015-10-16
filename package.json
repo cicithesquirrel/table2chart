@@ -1,6 +1,6 @@
 {
     "name": "table2chart",
-    "version": "1.0.0",
+    "version": "1.0.0-beta",
     "description": "HTML table to Google Chart converter",
     "scripts": {
         "test": "mocha",

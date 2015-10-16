@@ -30,8 +30,16 @@ describe('"converters" tests', function () {
             test.number(t2c.converters.number('123')).is(123);
         });
 
+        it('Convert negative integer', function () {
+            test.number(t2c.converters.number('-123')).is(-123);
+        });
+
         it('Convert float', function () {
             test.number(t2c.converters.number('123.45')).is(123.45);
+        });
+
+        it('Convert negative float', function () {
+            test.number(t2c.converters.number('-123.45')).is(-123.45);
         });
 
         it('Convert empty string to undefined', function () {

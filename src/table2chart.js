@@ -13,7 +13,7 @@ define('table2chart', function () {
             var retval;
             if (isNotEmpty(val)) {
                 val = val.trim();
-                var m = val.match(/^(\d+(.\d+))$/);
+                var m = val.match(/^-?(\d+(.\d+))$/);
                 if (m) {
                     retval = parseFloat(val.trim());
                 }

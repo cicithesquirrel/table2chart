@@ -198,7 +198,7 @@ define('table2chart', function () {
             applySize: function () {
                 var sizeAsString = placeholder.getAttribute('data-t2c-size');
                 if (sizeAsString) {
-                    var dim = sizeAsString.split('x');
+                    var dim = sizeAsString.split(';');
                     if (dim && dim.length === 2) {
                         placeholder.style.width = dim[0];
                         placeholder.style.height = dim[1];

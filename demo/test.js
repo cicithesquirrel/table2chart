@@ -1,3 +1,4 @@
+/* This the config for requirejs in this project */
 require.config({
     baseUrl: '../src',
     paths: {
@@ -5,6 +6,7 @@ require.config({
     }
 });
 
+/* Load table2chart. JQuery is needed *only* for drawing the chart after the page is fully loaded. */
 require(['table2chart', 'jquery'],
     function (t2c, $) {
         // on-load, apply charting

@@ -14,7 +14,7 @@ Well, OK, you'll have to add a few metadata, I'll admit that...
   3. Choose a Chart Type by adding a `data-t2c` attribute (possible values are the name of the `google.visualization` method to call to build the chart, see [Google Chart](https://developers.google.com/chart/))
   3. When the page is loaded (use [JQuery](http://api.jquery.com/ready/) or [Google API](https://developers.google.com/feed/v1/reference#setOnLoadCallback) for this), call `table2chart.drawGoogleChart(table)`
 
-And that's it!  You can see an example in file: [`demo/dumbest.html`](demo/simplest.html).
+And that's it!  You can see an example in file: [`demo/dumbest.html`](demo/dumbest.html).
 
 And if this doesn't suit you, well... sorry pal, you fell out of the defaults and you'll have to check out the full options below...
 
